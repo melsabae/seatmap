@@ -16,7 +16,7 @@ export class Seat {
 export class AppComponent implements OnInit {
 	title = 'app';
 
-	// seat sold icon
+	// seat sold or section disabled icon
 	ssi: string = "../assets/ssi.png";
 	// regular unselected seat
 	rsu: string = "../assets/rsu.png";
