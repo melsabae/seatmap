@@ -8,12 +8,12 @@
 
 				<div *ngIf="!s.sold && !sec.disabled">
 					<div *ngIf="sel.includes(s)">
-						<img *ngIf="s.ha"  id="{{s.id}}" [src]="hss" (click)="seatClick($event)">
-						<img *ngIf="!s.ha" id="{{s.id}}" [src]="rss" (click)="seatClick($event)">
+						<img *ngIf="s.ha"  name="{{sec.id}}.{{s.id}}" id="{{s.id}}" [src]="hss" (click)="seatClick($event)">
+						<img *ngIf="!s.ha" name="{{sec.id}}.{{s.id}}" id="{{s.id}}" [src]="rss" (click)="seatClick($event)">
 					</div>
 					<div *ngIf="! sel.includes(s)">
-						<img *ngIf="s.ha"  id="{{s.id}}" [src]="hsu" (click)="seatClick($event)">
-						<img *ngIf="!s.ha" id="{{s.id}}" [src]="rsu" (click)="seatClick($event)">
+						<img *ngIf="s.ha"  name="{{sec.id}}.{{s.id}}" id="{{s.id}}" [src]="hsu" (click)="seatClick($event)">
+						<img *ngIf="!s.ha" name="{{sec.id}}.{{s.id}}" id="{{s.id}}" [src]="rsu" (click)="seatClick($event)">
 					</div>
 				</div>
 

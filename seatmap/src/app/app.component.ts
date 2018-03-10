@@ -6,6 +6,7 @@ export class Seat {
 	selected: boolean; // image switch
 	sold: boolean; // disable the control
 	ha: boolean; // handicapped accessible
+	path: string;
 };
 
 @Component({
@@ -50,6 +51,7 @@ export class AppComponent implements OnInit {
 			section_id: "1",
 			selected: false,
 			ha: false,
+			path: '',
 			sold: true
 		},
 		{
@@ -57,6 +59,7 @@ export class AppComponent implements OnInit {
 			section_id: "1",
 			selected: false,
 			sold: false,
+			path: '',
 			ha: false
 		},
 		{
@@ -64,6 +67,7 @@ export class AppComponent implements OnInit {
 			section_id: "2",
 			selected: false,
 			sold: false,
+			path: '',
 			ha: true
 		},
 		{
@@ -71,6 +75,7 @@ export class AppComponent implements OnInit {
 			section_id: "2",
 			selected: false,
 			sold: false,
+			path: '',
 			ha: false
 		},
 		{
@@ -78,18 +83,21 @@ export class AppComponent implements OnInit {
 			section_id: "3",
 			selected: false,
 			ha: false,
+			path: '',
 			sold: true
 		},
 		{
 			id: 2,
 			section_id: "3",
 			selected: false,
+			path: '',
 			sold: false,
 			ha: false
 		},
 		{
 			id: 8675309,
 			section_id: "3",
+			path: '',
 			selected: false,
 			sold: false,
 			ha: true
@@ -98,6 +106,7 @@ export class AppComponent implements OnInit {
 			id: 4,
 			section_id: "3",
 			selected: false,
+			path: '',
 			sold: false,
 			ha: false
 		},
@@ -110,6 +119,8 @@ export class AppComponent implements OnInit {
 	}
 
 	public seatClick(event: any): void {
+
+		let path = event.target.name;
 		let seat = this.seats.filter((s) => s.id == event.target.id)[0];
 
 		if(! seat) { return; }
@@ -119,10 +130,10 @@ export class AppComponent implements OnInit {
 			this.sel.splice(this.sel.indexOf(seat), 1);
 		} else {
 			seat.selected = true;
+			seat.path = event.target.name;
 			this.sel.push(seat);
 		}
 
-		//console.log(this.sel);
 		this.updatePrice();
 	}
 
