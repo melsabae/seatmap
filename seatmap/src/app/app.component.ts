@@ -110,8 +110,7 @@ export class AppComponent implements OnInit {
 	}
 
 	public seatClick(event: any): void {
-		let id = event.explicitOriginalTarget.id;
-		let seat = this.seats.filter((s) => s.id == id)[0];
+		let seat = this.seats.filter((s) => s.id == event.target.id)[0];
 
 		if(! seat) { return; }
 
