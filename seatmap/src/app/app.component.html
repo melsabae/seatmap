@@ -2,8 +2,16 @@
 	<div class="row" *ngFor="let sec of sections">Section {{ sec }}
 		<div *ngFor="let s of seats">
 			<div class="col" *ngIf="s.section == sec" data-id="s.id">
-				<div *ngIf="s.special" (click)="seatClick($event)"><img id="{{s.id}}" [src]="img_handicapped"></div>
-				<div *ngIf="!s.special" (click)="seatClick($event)"><img id="{{s.id}}" [src]="img_seat"></div>
+				<div *ngIf="!s.sold">
+					<div *ngIf="!s.ha && !sel.includes(s)" (click)="seatClick($event)"><img id="{{s.id}}" [src]="rsu"></div>
+					<div *ngIf="!s.ha && sel.includes(s)" (click)="seatClick($event)"><img id="{{s.id}}" [src]="rss"></div>
+					<div *ngIf="s.ha && !sel.includes(s)" (click)="seatClick($event)"><img id="{{s.id}}" [src]="hsu"></div>
+					<div *ngIf="s.ha && sel.includes(s)" (click)="seatClick($event)"><img id="{{s.id}}" [src]="hss"></div>
+				</div>
+				<div *ngIf="s.sold">
+					<div><img id="{{s.id}}" [src]="ssi"></div>
+				</div>
+				<div class="w-100"></div>
 			</div>
 		</div>
 	</div>

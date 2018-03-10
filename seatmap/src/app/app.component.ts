@@ -4,8 +4,9 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@ang
 export class Seat {
 	id: number;
 	section: string;
-	selected: boolean;
-	special: boolean;
+	selected: boolean; // image switch
+	sold: boolean; // disable the control
+	ha: boolean; // handicapped accessible
 };
 
 @Component({
@@ -16,51 +17,59 @@ export class Seat {
 export class AppComponent implements OnInit {
   title = 'app';
 
-	img_seat: string = "../assets/seat.png";
-	img_handicapped: string = "../assets/wheelchair.png";
+	// seat sold icon
+	ssi: string = "../assets/ssi.png";
+	// regular unselected seat
+	rsu: string = "../assets/rsu.png";
+	// regular selected seat
+	rss: string = "../assets/rss.png";
+	// handicapped acessible unselected
+	hsu: string = "../assets/hsu.png";
+	// handicapped acessible selected
+	hss: string = "../assets/hss.png"
 
 	sections: string[] = [
 		"1",
 		"2",
 	];
 
-	selected: Seat[] = [];
+	sel: Seat[] = [];
 
 	seats: Seat[] = [
 		{
 			id: 1,
 			section: "1",
 			selected: false,
-			special: false
+			ha: false,
+			sold: true
 		},
 		{
 			id: 2,
 			section: "1",
 			selected: false,
-			special: false
+			sold: false,
+			ha: false
 		},
 		{
 			id: 8675309,
 			section: "2",
 			selected: false,
-			special: true
+			sold: false,
+			ha: true
 		},
 		{
 			id: 4,
 			section: "2",
 			selected: false,
-			special: false
+			sold: false,
+			ha: false
 		},
 	]
 
 	constructor(private fb: FormBuilder) {}
 
 	public updatePrice(): void {
-		console.log(this.selected);
-
-		for (var seat in this.selected) {
-			console.log(seat);
-		}
+		console.log(this.sel);
 	}
 
 	public seatClick(event: any): void {
@@ -69,13 +78,13 @@ export class AppComponent implements OnInit {
 
 		if(seat.selected) {
 			seat.selected = false;
-			this.selected.splice(this.selected.indexOf(seat), 1);
+			this.sel.splice(this.sel.indexOf(seat), 1);
 		} else {
 			seat.selected = true;
-			this.selected.push(seat);
+			this.sel.push(seat);
 		}
 
-		//console.log(this.selected);
+		//console.log(this.sel);
 		this.updatePrice();
 	}
 
