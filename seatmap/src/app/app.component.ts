@@ -113,6 +113,8 @@ export class AppComponent implements OnInit {
 		let id = event.explicitOriginalTarget.id;
 		let seat = this.seats.filter((s) => s.id == id)[0];
 
+		if(! seat) { return; }
+
 		if(seat.selected) {
 			seat.selected = false;
 			this.sel.splice(this.sel.indexOf(seat), 1);
